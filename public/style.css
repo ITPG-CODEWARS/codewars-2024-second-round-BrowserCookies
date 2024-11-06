@@ -1,4 +1,101 @@
+:root {
+  --bg-color: #000;
+  --fg-color: #ffffff;
+  --accent-color: #05fa6d;
+}
+
 * {
   margin: 0;
   padding: 0;
+  font-family: "Outfit";
+  user-select: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .nav-bar {
+    width: 100vw;
+    height: 8vh;
+    display: flex;
+
+    span {
+      color: var(--accent-color);
+      font-size: 1.3vw;
+      margin-block: auto;
+      margin-right: auto;
+      margin-left: 1vw;
+      font-weight: bold;
+    }
+
+    a {
+      width: fit-content;
+      height: fit-content;
+      padding: 0.4vw;
+      text-decoration: none;
+      margin-block: auto;
+      margin-inline: 0.5vw;
+      transition: 200ms;
+
+      label {
+        font-size: 1.1vw;
+        color: var(--fg-color);
+        transition: 200ms;
+        cursor: pointer;
+      }
+    }
+
+    a:nth-child(2):hover {
+      border-radius: 0.5vw;
+      background: rgb(255, 255, 255, 0.1);
+    }
+
+    a:nth-child(3) {
+      margin-right: 2vw;
+      background: var(--accent-color);
+      border-radius: 0.5vw;
+
+      label {
+        color: var(--bg-color);
+        font-weight: bold;
+      }
+    }
+
+    a:nth-child(3):hover {
+      scale: 1.05;
+    }
+  }
+
+  .content {
+    width: 90vw;
+    height: 90vh;
+    margin: auto;
+    display: flex;
+
+    .desc {
+      width: 50%;
+      height: 100%;
+      border: 1px solid white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .try-div {
+      width: 50%;
+      height: 100%;
+      border: 1px solid white;
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
