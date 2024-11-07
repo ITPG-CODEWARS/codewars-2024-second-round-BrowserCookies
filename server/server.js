@@ -37,17 +37,27 @@ app.get("/tryShrnk", (req, res) => {
     short_id: short_id,
   }).then(() => {
     res.send({
-      payload: `We shrnk this url for you: ${shortUrl}`,
+      // payload: `We shrnk this url for you: ${shortUrl}`,
+      payload: `${shortUrl}`,
     });
   });
 });
 
 app.get("/:shortUrl", (req, res) => {
-  console.log(req.params.shortUrl);
+  // console.log(req.params.shortUrl);
 
   if (req.params.shortUrl != null) {
     Url.findOne({ short_id: req.params.shortUrl }).then((response) => {
       res.redirect(response.full_url);
+
+      let clickCount = Number(response.clicks);
+      clickCount++;
+      // console.log(`${clickCount}`);
+
+      Url.updateOne(
+        { short_id: req.params.shortUrl },
+        { $set: { clicks: `${clickCount}` } }
+      ).then((respon) => {});
     });
   }
 });
