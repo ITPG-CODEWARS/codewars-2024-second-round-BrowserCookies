@@ -85,7 +85,6 @@ body {
     .desc {
       width: 50%;
       height: 100%;
-      border: 1px solid white;
       display: flex;
       flex-direction: column;
 
@@ -118,7 +117,6 @@ body {
     .try-div {
       width: 50%;
       height: 100%;
-      border: 1px solid white;
       display: flex;
       flex-direction: column;
 
@@ -126,14 +124,14 @@ body {
         color: var(--fg-color);
         font-size: 2vw;
         margin-inline: auto;
-        margin-top: 5vw;
+        margin-top: auto;
       }
 
       .url-field {
         width: 100%;
         height: 15%;
-        border: 1px solid white;
         display: flex;
+        margin-bottom: auto;
 
         input {
           background: transparent;
@@ -151,6 +149,11 @@ body {
           padding-inline: 1vw;
         }
 
+        input:focus {
+          scale: 1.03;
+          border-color: var(--accent-color);
+        }
+
         label {
           width: fit-content;
           height: fit-content;
@@ -165,6 +168,10 @@ body {
           margin-left: 1vw;
           transition: 200ms;
           cursor: pointer;
+        }
+
+        label:hover {
+          scale: 1.05
         }
       }
     }
