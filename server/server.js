@@ -49,7 +49,20 @@ app.get("/login", (req, res) => {
 
   User.findOne({ email: email }).then((response) => {
     if (response != {} && response != null) {
-      console.log(response);
+      if (pass == response.password) {
+        res.send({
+          payload: "passed",
+          user: response.username,
+        });
+      } else {
+        res.send({
+          payload: "denied",
+        });
+      }
+    } else {
+      res.send({
+        payload: "denied",
+      });
     }
   });
 });
