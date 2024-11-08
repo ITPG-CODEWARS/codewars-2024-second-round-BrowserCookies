@@ -43,21 +43,36 @@ app.get("/tryShrnk", (req, res) => {
   });
 });
 
+app.get("/login", (req, res) => {
+  const email = req.query.email;
+  const pass = req.query.pass;
+
+  User.findOne({ email: email }).then((response) => {
+    if (response != {} && response != null) {
+      console.log(response);
+    }
+  });
+});
+
 app.get("/:shortUrl", (req, res) => {
   // console.log(req.params.shortUrl);
 
   if (req.params.shortUrl != null) {
     Url.findOne({ short_id: req.params.shortUrl }).then((response) => {
-      res.redirect(response.full_url);
+      if (response != {} && response != null) {
+        res.redirect(response.full_url);
 
-      let clickCount = Number(response.clicks);
-      clickCount++;
-      // console.log(`${clickCount}`);
+        let clickCount = Number(response.clicks);
+        clickCount++;
+        // console.log(`${clickCount}`);
 
-      Url.updateOne(
-        { short_id: req.params.shortUrl },
-        { $set: { clicks: `${clickCount}` } }
-      ).then((respon) => {});
+        Url.updateOne(
+          { short_id: req.params.shortUrl },
+          { $set: { clicks: `${clickCount}` } }
+        ).then((respon) => {});
+      } else {
+        console.log("There was a problem");
+      }
     });
   }
 });

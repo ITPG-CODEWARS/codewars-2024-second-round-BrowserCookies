@@ -38,4 +38,95 @@ body {
       font-weight: bold;
     }
   }
+
+  .content {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+    .login-title {
+      color: var(--fg-color);
+      margin-inline: auto;
+      margin-top: auto;
+      margin-bottom: 3vw;
+      font-size: 3vw;
+    }
+
+    input {
+      background: transparent;
+      outline: none;
+      border: 2px solid grey;
+      border-radius: 1vw;
+      width: 20%;
+      height: 6%;
+      margin-inline: auto;
+      margin-block: 1vw;
+      transition: 200ms;
+      font-size: 1.2vw;
+      color: var(--accent-color);
+      padding-inline: 1vw;
+    }
+
+    input:focus {
+      scale: 1.03;
+      border-color: var(--accent-color);
+    }
+
+    .checkbox-div {
+      width: fit-content;
+      height: fit-content;
+      margin-inline: auto;
+      margin-top: 0.5vw;
+      display: flex;
+
+      input {
+        width: 1vw;
+        height: 1vw;
+        margin-right: 1vw;
+        margin-block: auto;
+      }
+
+      label {
+        color: var(--fg-color);
+        margin-block: auto;
+        transition: 300ms;
+      }
+
+      input:checked ~ .login-checkbox-lbl {
+        color: var(--accent-color);
+      }
+    }
+
+    .login-btn {
+      background: var(--accent-color);
+      color: var(--bg-color);
+      border-radius: .5vw;
+      margin-inline: auto;
+      margin-top: 1vw;
+      font-size: 1.5vw;
+      font-weight: bold;
+      padding-inline: 1vw;
+      padding-block: .5vw;
+      transition: 200ms ease-out;
+      cursor: pointer;
+    }
+
+    .login-btn:hover {
+      scale: 1.03;
+    }
+
+    .signin-link {
+      margin-inline: auto;
+      margin-bottom: auto;
+      margin-top: 2vw;
+      text-decoration: none;
+      color: var(--accent-color);
+    }
+
+    .signin-link:hover {
+      text-decoration: underline;
+    }
+  }
 }
