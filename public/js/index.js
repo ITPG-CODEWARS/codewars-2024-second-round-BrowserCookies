@@ -4,6 +4,11 @@ const tryShrnkResult = document.querySelector(".try-shrnk-result");
 
 const user = "caismen";
 
+const staySignedIn = localStorage.getItem("STAY_SIGNED_IN");
+if (staySignedIn == "true") {
+  location.href = "./accountView.html";
+}
+
 tryShrnkBtn.onclick = () => {
   if (tryUrlInput.value != "") {
     fetch(

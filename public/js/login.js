@@ -65,6 +65,13 @@ loginBtn.onclick = () => {
     ).then((res) => {
       res.json().then((data) => {
         if (data.payload == "passed") {
+          if (staySignedInCheck.checked) {
+            localStorage.setItem("STAY_SIGNED_IN", "true");
+          } else {
+            localStorage.setItem("STAY_SIGNED_IN", "false");
+          }
+          console.log(data.user);
+          localStorage.setItem("URL_SHRNK_USERNAME", data.user);
           location.href = "./accountView.html";
         } else if (data.payload == "denied") {
           emailInput.style.borderColor = "rgba(255, 0, 0, 0.5";
@@ -92,7 +99,14 @@ window.onkeydown = (e) => {
       ).then((res) => {
         res.json().then((data) => {
           if (data.payload == "passed") {
-            console.log(data.payload);
+            if (staySignedInCheck.checked) {
+              localStorage.setItem("STAY_SIGNED_IN", "true");
+            } else {
+              localStorage.setItem("STAY_SIGNED_IN", "false");
+            }
+            console.log(data.user);
+            localStorage.setItem("URL_SHRNK_USERNAME", data.user);
+            location.href = "./accountView.html";
           } else if (data.payload == "denied") {
             emailInput.style.borderColor = "rgba(255, 0, 0, 0.5";
             passInput.style.borderColor = "rgba(255, 0, 0, 0.5";
