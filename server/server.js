@@ -67,6 +67,14 @@ app.get("/login", (req, res) => {
   });
 });
 
+app.get("/getUrls", (req, res) => {
+  Url.find({ user: req.query.user }).then((response) => {
+    res.send({
+      urls_array: response,
+    });
+  });
+});
+
 app.get("/:shortUrl", (req, res) => {
   // console.log(req.params.shortUrl);
 
