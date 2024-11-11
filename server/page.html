@@ -1,11 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../pictures/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Your email has been confirmed.</title>
+  </head>
+  <style>
+    :root {
+      --bg-color: #000;
+      --fg-color: #ffffff;
+      --accent-color: #05fa6d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Outfit";
+      user-select: none;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrapper {
+      width: 100vw;
+      height: 100vh;
+      background: var(--bg-color);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+
+      .nav-bar {
+        width: 100vw;
+        height: 8vh;
+        display: flex;
+
+        span {
+          color: var(--accent-color);
+          font-size: 1.3vw;
+          margin-block: auto;
+          margin-right: auto;
+          margin-left: 1vw;
+          font-weight: bold;
+        }
+      }
+
+      h1 {
+        color: var(--fg-color);
+        margin-inline: auto;
+        margin-top: auto;
+        margin-bottom: 1vw;
+      }
+
+      h4 {
+        color: var(--fg-color);
+        opacity: 0.8;
+        margin-inline: auto;
+        margin-bottom: auto;
+      }
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      <div class="nav-bar">
+        <span class="logo">url shrnk</span>
+      </div>
+
+      <h1>Your email has been confirmed.</h1>
+      <h4>Please return back to the website.</h4>
+    </div>
+  </body>
 </html>
