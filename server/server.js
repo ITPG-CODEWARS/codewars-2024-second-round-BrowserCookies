@@ -117,6 +117,26 @@ app.get("/deleteUrl", (req, res) => {
   );
 });
 
+app.get("/createAccount", (req, res) => {
+  const user = req.query.user;
+  const email = req.query.email;
+  const password = req.query.pass;
+
+  User.find({ username: req.query.user }).then((response) => {
+    if (response == [] && response[0] == null) {
+      User.find({ email: req.query.email }).then((respon) => {
+        if (respon == [] && respon[0] == null) {
+          User.create({
+            username: user,
+            email: email,
+            password: password,
+          });
+        }
+      });
+    }
+  });
+});
+
 app.get("/:shortUrl", (req, res) => {
   // console.log(req.params.shortUrl);
 

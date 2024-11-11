@@ -1,0 +1,121 @@
+:root {
+  --bg-color: #000;
+  --fg-color: #ffffff;
+  --accent-color: #05fa6d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Outfit";
+  user-select: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .nav-bar {
+    width: 100vw;
+    height: 8vh;
+    display: flex;
+
+    span {
+      color: var(--accent-color);
+      font-size: 1.3vw;
+      margin-block: auto;
+      margin-right: auto;
+      margin-left: 1vw;
+      font-weight: bold;
+    }
+  }
+
+  .content {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+    .signin-title {
+      color: var(--fg-color);
+      margin-inline: auto;
+      margin-top: auto;
+      margin-bottom: 3vw;
+      font-size: 3vw;
+    }
+
+    input {
+      background: transparent;
+      outline: none;
+      border: 2px solid grey;
+      border-radius: 1vw;
+      width: 20%;
+      height: 6%;
+      margin-inline: auto;
+      margin-block: 1vw;
+      transition: 200ms;
+      font-size: 1.2vw;
+      color: var(--accent-color);
+      padding-inline: 1vw;
+    }
+
+    input:focus {
+      scale: 1.03;
+      border-color: var(--accent-color);
+    }
+
+    .checkbox-div {
+      width: fit-content;
+      height: fit-content;
+      margin-inline: auto;
+      margin-top: 0.5vw;
+      display: flex;
+
+      input {
+        width: 1vw;
+        height: 1vw;
+        margin-right: 1vw;
+        margin-block: auto;
+      }
+
+      label {
+        color: var(--fg-color);
+        margin-block: auto;
+        transition: 300ms;
+      }
+
+      input:checked ~ .login-checkbox-lbl {
+        color: var(--accent-color);
+      }
+    }
+
+    .signin-btn {
+      background: var(--accent-color);
+      color: var(--bg-color);
+      border-radius: 0.5vw;
+      margin-inline: auto;
+      margin-top: 1vw;
+      margin-bottom: auto;
+      font-size: 1.5vw;
+      font-weight: bold;
+      padding-inline: 1vw;
+      padding-block: 0.5vw;
+      transition: 200ms ease-out;
+      cursor: pointer;
+    }
+
+    .signin-btn:hover {
+      scale: 1.03;
+    }
+  }
+}
