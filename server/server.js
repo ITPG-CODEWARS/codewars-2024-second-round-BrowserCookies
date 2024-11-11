@@ -107,6 +107,16 @@ app.get("/createShortUrl", (req, res) => {
   });
 });
 
+app.get("/deleteUrl", (req, res) => {
+  Url.deleteOne({ short_id: req.query.urlId, user: req.query.user }).then(
+    (respon) => {
+      res.send({
+        payload: "ok",
+      });
+    }
+  );
+});
+
 app.get("/:shortUrl", (req, res) => {
   // console.log(req.params.shortUrl);
 

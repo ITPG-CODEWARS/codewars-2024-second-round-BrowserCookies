@@ -86,7 +86,7 @@ fetch(`http://localhost:5000/getUrls?user=${username}`).then((res) => {
               <label title="edit"
                 ><img src="../pictures/edit_icon.svg" alt=""
               /></label>
-              <label title="delete"
+              <label class="delete-url-btn" title="delete" urlToDelete="${url.short_id}"
                 ><img src="../pictures/delete_icon.svg" alt=""
               /></label>
             </div>
@@ -100,13 +100,29 @@ fetch(`http://localhost:5000/getUrls?user=${username}`).then((res) => {
     document.title = `${username} | ${clicks_count}`;
 
     const copyLinkBtns = document.querySelectorAll(".copy-link-btn");
+    const deleteUrlBtns = document.querySelectorAll(".delete-url-btn");
 
     copyLinkBtns.forEach((btn) => {
       btn.onclick = () => {
         payload = btn.getAttribute("payload");
-        console.log(payload);
+        // console.log(payload);
         navigator.clipboard.writeText(payload);
         showSuccessMessage("Copied to clipboard.");
+      };
+    });
+
+    deleteUrlBtns.forEach((btn) => {
+      btn.onclick = () => {
+        const urlToDelete = btn.getAttribute("urlToDelete");
+        fetch(
+          `http://localhost:5000/deleteUrl?urlId=${urlToDelete}&user=${username}`
+        ).then((res) => {
+          res.json().then((data) => {
+            if (data.payload == "ok") {
+              location.reload();
+            }
+          });
+        });
       };
     });
   });
