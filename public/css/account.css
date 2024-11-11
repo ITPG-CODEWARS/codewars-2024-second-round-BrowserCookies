@@ -217,4 +217,39 @@ body {
   .add-btn:hover {
     scale: 1.05;
   }
+
+  .confirmationDiv {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    display: flex;
+    display: none;
+    flex-direction: column;
+    overflow-y: scroll;
+    padding: 1vw;
+
+    span {
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+
+    h1 {
+      color: var(--fg-color);
+      margin-inline: auto;
+      margin-top: auto;
+      margin-bottom: 1vw;
+    }
+
+    h4 {
+      color: var(--fg-color);
+      margin-inline: auto;
+      margin-bottom: 2vw;
+    }
+
+    h5 {
+      color: var(--fg-color);
+      margin-inline: auto;
+      margin-bottom: auto;
+    }
+  }
 }
