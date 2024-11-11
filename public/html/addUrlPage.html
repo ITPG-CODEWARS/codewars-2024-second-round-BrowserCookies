@@ -19,7 +19,22 @@
         <span class="logo">url shrnk</span>
       </div>
 
-      <div class="content"></div>
+      <div class="content">
+        <input placeholder="full url" type="text" class="full_url_input" />
+        <div class="custom-url-confirmation-div">
+          <input type="checkbox" class="custom-url-confirmation-checkbox" />
+          <label>Custom url?</label>
+        </div>
+        <input
+          placeholder="short url"
+          type="text"
+          class="short_url_input"
+          disabled
+        />
+        <label class="short-url-preview">http://localhost:5000/example</label>
+
+        <label class="save-btn">Save</label>
+      </div>
 
       <label class="back-btn"
         ><img src="../pictures/arrowLeft.svg" alt="add url button"

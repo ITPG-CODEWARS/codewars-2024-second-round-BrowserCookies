@@ -75,6 +75,12 @@ app.get("/getUrls", (req, res) => {
   });
 });
 
+app.get("/getShortPriview", (req, res) => {
+  res.send({
+    payload: shortId.generate(req.query.url),
+  });
+});
+
 app.get("/:shortUrl", (req, res) => {
   // console.log(req.params.shortUrl);
 
