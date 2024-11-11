@@ -1,10 +1,14 @@
 const express = require("express");
+const path = require("path");
 const PORT = 5000;
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./User.model");
 const Url = require("./Url.model");
 const shortId = require("shortid");
+const nodemailer = require("nodemailer");
+
+// process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
 mongoose
   .connect(
@@ -123,17 +127,57 @@ app.get("/createAccount", (req, res) => {
   const password = req.query.pass;
 
   User.find({ username: req.query.user }).then((response) => {
-    if (response == [] && response[0] == null) {
+    if (response[0] == undefined) {
       User.find({ email: req.query.email }).then((respon) => {
-        if (respon == [] && respon[0] == null) {
+        if (respon[0] == undefined) {
           User.create({
             username: user,
             email: email,
             password: password,
           });
+
+          const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            auth: {
+              user: "urlshrnk@gmail.com",
+              pass: "tvgkwogoyhhiqlzb",
+            },
+            tls: {
+              rejectUnauthorized: false,
+            },
+          });
+
+          transporter.sendMail({
+            to: email,
+            subject: "Confirm your email",
+            html: `<h1>Hello, ${user}</h1> <br />
+                    <p>This is an automated confirmation email. Please click <a href="http://localhost:5000/confirmEmail?user=${user}">here</a> to confirm your email.</p>`,
+          });
+
+          res.send({
+            payload: "acknowledged",
+          });
+        } else {
+          res.send({
+            payload: "denied",
+          });
         }
       });
+    } else {
+      res.send({
+        payload: "denied",
+      });
     }
+  });
+});
+
+app.get("/confirmEmail", (req, res) => {
+  User.updateOne(
+    { username: req.query.user },
+    { $set: { confirmed: true } }
+  ).then((respon) => {
+    res.sendFile(path.join(__dirname, "page.html"));
   });
 });
 
