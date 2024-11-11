@@ -225,7 +225,6 @@ body {
     display: flex;
     display: none;
     flex-direction: column;
-    overflow-y: scroll;
     padding: 1vw;
 
     span {

@@ -4,6 +4,7 @@ const urlsCountLbl = document.querySelector(".url-count");
 const clicksCountLbl = document.querySelector(".clicks-count");
 const logoutBtn = document.querySelector(".logout-btn");
 const addBtn = document.querySelector(".add-btn");
+const confirmationDiv = document.querySelector(".confirmationDiv");
 
 if (localStorage.getItem("URL_SHRNK_USERNAME") == null) {
   location.href = "../html/index.html";
@@ -40,6 +41,19 @@ function showSuccessMessage(message) {
 }
 
 const username = localStorage.getItem("URL_SHRNK_USERNAME");
+
+fetch(`http://localhost:5000/isConfirmed?user=${username}`).then((res) => {
+  res.json().then((data) => {
+    if (!data.payload) {
+      contentDiv.style.display = "none";
+      confirmationDiv.style.display = "flex";
+    } else {
+      confirmationDiv.style.display = "none";
+      contentDiv.style.display = "flex";
+    }
+  });
+});
+
 let urls = [];
 fetch(`http://localhost:5000/getUrls?user=${username}`).then((res) => {
   res.json().then((data) => {
@@ -82,9 +96,6 @@ fetch(`http://localhost:5000/getUrls?user=${username}`).then((res) => {
             <div class="btns-div">
               <label class="copy-link-btn" title="copy link" payload="${url.short_url}"
                 ><img src="../pictures/link_icon.svg" alt=""
-              /></label>
-              <label title="edit"
-                ><img src="../pictures/edit_icon.svg" alt=""
               /></label>
               <label class="delete-url-btn" title="delete" urlToDelete="${url.short_id}"
                 ><img src="../pictures/delete_icon.svg" alt=""

@@ -181,6 +181,16 @@ app.get("/confirmEmail", (req, res) => {
   });
 });
 
+app.get("/isConfirmed", (req, res) => {
+  User.findOne({ username: req.query.user }).then((respon) => {
+    if (respon != null) {
+      res.send({
+        payload: respon.confirmed,
+      });
+    }
+  });
+});
+
 app.get("/:shortUrl", (req, res) => {
   // console.log(req.params.shortUrl);
 
