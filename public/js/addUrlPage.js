@@ -7,6 +7,7 @@ const short_url_input = document.querySelector(".short_url_input");
 const short_url_preview = document.querySelector(".short-url-preview");
 const save_btn = document.querySelector(".save-btn");
 
+const username = localStorage.getItem("URL_SHRNK_USERNAME");
 let customShortUrl;
 let custom_url_confirmation = false;
 let generatedShortId;
@@ -97,19 +98,29 @@ save_btn.onclick = () => {
   if (generatedShortId != undefined) {
     if (!custom_url_confirmation) {
       fetch(
-        `http://localhost:5000/createShortUrl?fullUrl=${full_url_input.value}&shortId=${generatedShortId}`
+        `http://localhost:5000/createShortUrl?fullUrl=${full_url_input.value}&shortId=${generatedShortId}&user=${username}`
       ).then((res) => {
         res.json().then((data) => {
-          console.log(data.payload);
+          if (data.payload == "acknowledged") {
+            location.href = "../html/accountView.html";
+          } else if (data.payload == "denied") {
+            showErrorMessage("Another url like that exists please try again.");
+          }
         });
       });
     } else if (custom_url_confirmation) {
       if (customShortUrl != undefined && customShortUrl != "") {
         fetch(
-          `http://localhost:5000/createShortUrl?fullUrl=${full_url_input.value}&shortId=${customShortUrl}`
+          `http://localhost:5000/createShortUrl?fullUrl=${full_url_input.value}&shortId=${customShortUrl}&user=${username}`
         ).then((res) => {
           res.json().then((data) => {
-            console.log(data.payload);
+            if (data.payload == "acknowledged") {
+              location.href = "../html/accountView.html";
+            } else if (data.payload == "denied") {
+              showErrorMessage(
+                "Another url like that exists please try again."
+              );
+            }
           });
         });
       }

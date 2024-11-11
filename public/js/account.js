@@ -97,6 +97,7 @@ fetch(`http://localhost:5000/getUrls?user=${username}`).then((res) => {
 
     urlsCountLbl.textContent = `urls: ${urls_count}`;
     clicksCountLbl.textContent = `clicks: ${clicks_count}`;
+    document.title = `${username} | ${clicks_count}`;
 
     const copyLinkBtns = document.querySelectorAll(".copy-link-btn");
 

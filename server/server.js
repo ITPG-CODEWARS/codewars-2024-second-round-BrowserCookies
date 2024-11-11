@@ -81,6 +81,32 @@ app.get("/getShortPriview", (req, res) => {
   });
 });
 
+app.get("/createShortUrl", (req, res) => {
+  const short_id = req.query.shortId;
+  const shortUrl = `http://localhost:5000/${short_id}`;
+
+  Url.find({ short_id: short_id }).then((response) => {
+    if ((response == [] && response[0] == null) || response[0] == undefined) {
+      Url.create({
+        full_url: req.query.fullUrl,
+        short_url: shortUrl,
+        user: req.query.user,
+        short_id: short_id,
+      }).then(() => {
+        res.send({
+          // payload: `We shrnk this url for you: ${shortUrl}`,
+          payload: "acknowledged",
+        });
+      });
+    } else {
+      res.send({
+        // payload: `We shrnk this url for you: ${shortUrl}`,
+        payload: "denied",
+      });
+    }
+  });
+});
+
 app.get("/:shortUrl", (req, res) => {
   // console.log(req.params.shortUrl);
 
