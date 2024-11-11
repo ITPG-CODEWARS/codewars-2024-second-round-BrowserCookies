@@ -3,6 +3,7 @@ const contentDiv = document.querySelector(".content");
 const urlsCountLbl = document.querySelector(".url-count");
 const clicksCountLbl = document.querySelector(".clicks-count");
 const logoutBtn = document.querySelector(".logout-btn");
+const addBtn = document.querySelector(".add-btn");
 
 if (localStorage.getItem("URL_SHRNK_USERNAME") == null) {
   location.href = "../html/index.html";
@@ -23,10 +24,13 @@ function showSuccessMessage(message) {
   debugDiv.style.borderRadius = "5px";
   debugDiv.style.fontSize = "1.5vw";
   debugDiv.style.zIndex = "9999";
+  debugDiv.style.opacity = "0";
   setTimeout(() => {
     debugDiv.style.right = "20px";
+    debugDiv.style.opacity = "1";
     setTimeout(() => {
       debugDiv.style.right = "-130px";
+      debugDiv.style.opacity = "0";
     }, 2750);
   }, 10);
   document.body.appendChild(debugDiv);
@@ -112,6 +116,10 @@ logoutBtn.onclick = () => {
   localStorage.setItem("STAY_SIGNED_IN", "false");
 
   location.reload();
+};
+
+addBtn.onclick = () => {
+  location.href = "./addUrlPage.html";
 };
 
 greetingLbl.innerHTML = `Welcome back, <span>${username}</span>`;

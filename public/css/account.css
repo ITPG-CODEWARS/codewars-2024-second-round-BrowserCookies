@@ -194,4 +194,27 @@ body {
   .content::-webkit-scrollbar {
     display: none;
   }
+
+  .add-btn {
+    width: fit-content;
+    height: fit-content;
+    padding: 1vw;
+    position: fixed;
+    bottom: 3vw;
+    right: 3vw;
+    transition: 200ms;
+    display: flex;
+    background: var(--accent-color);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 200ms;
+
+    img {
+      margin: auto;
+    }
+  }
+
+  .add-btn:hover {
+    scale: 1.05;
+  }
 }
